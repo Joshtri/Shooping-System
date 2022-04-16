@@ -6,16 +6,101 @@ using System.Threading.Tasks;
 
 namespace Shooping_System
 {
-    internal class ShowerTools : Foods
+    internal class ShowerTools : IMarket
     {
-        private static List<ShowerTools> ListShowerTools = new List<ShowerTools>();
-        public ShowerTools(string nme, string cmpny, string code, string typeprdc, long price, int disc)
-            : base(nme, cmpny, code, typeprdc, price, disc)
+        protected string name;
+        protected string company;
+        //protected int ExpiredDate;
+        protected string uniqueCode;
+        protected string typeProduct;
+        protected long price;
+        public DateTime dt = new DateTime();
+        protected int discount;
+        public string Name
         {
-            ListShowerTools.Add(this);
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        public string Company
+        {
+            get
+            {
+                return company;
+            }
+            set
+            {
+                company = value;
+            }
+        }
+        public string UniqueCode
+        {
+            get
+            {
+                return uniqueCode;
+            }
+            set
+            {
+                uniqueCode = value;
+            }
+        }
+        public string TypeProduct
+        {
+            get
+            {
+                return typeProduct;
+            }
+            set
+            {
+                typeProduct = value;
+            }
+        }
+        public long Price
+        {
+            get
+            {
+                return price;
+            }
+            set
+            {
+                price = value;
+            }
+        }
+        public int Discount
+        {
+            get
+            {
+                return discount;
+            }
+            set
+            {
+                discount = value;
+            }
         }
 
-        new public static void DisplayData()
+        private static List<ShowerTools> ListShowerTools = new List<ShowerTools>();
+
+        public ShowerTools(string nme, string cmpny/*, DateTime expdte*/, string code, string typeprdct, long price, int diskon)
+        {
+            Name = nme;
+            Company = cmpny;
+            //Dt = expdte;
+            UniqueCode = code;
+            TypeProduct = typeprdct;
+            Price = price;
+            Discount = diskon;
+
+            ListShowerTools.Add(this);
+            //ListFood.Add(this);
+        }
+
+
+         public static void DisplayData()
         {
             Console.WriteLine("======================================================================================================================");
             for (int i = 0; i < ListShowerTools.Count; i++)
@@ -31,7 +116,7 @@ namespace Shooping_System
             }
             Console.WriteLine("======================================================================================================================");
         }
-        new public static void DisplayName()
+         public static void DisplayName()
         {
             for (int i = 0; i < ListShowerTools.Count; i++)
             {
@@ -42,7 +127,7 @@ namespace Shooping_System
             }
         }
 
-        new public static void DisplayDiscount()
+         public static void DisplayDiscount()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             for (int i = 0; i < ListShowerTools.Count; i++)
@@ -54,7 +139,7 @@ namespace Shooping_System
             }
 
         }
-        new public static void CheckPrice(string inputcode)
+         public static void CheckPrice(string inputcode)
         {
             int i = 0;
             while (i < ListShowerTools.Count)
