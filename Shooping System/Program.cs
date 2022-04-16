@@ -12,6 +12,35 @@ namespace Shooping_System
 
         public static void Main()
         {
+            Shooping kasir1 = new Shooping();
+        Belanjaa:
+            Console.WriteLine("\tMau beli apa ? Silahkan pilih menu\n");
+            Console.WriteLine("1. Makanan\n");
+            Console.WriteLine("2. Langsung pesan");
+
+            nextopsi:
+            Console.WriteLine("Input : ");
+            var inputing = int.Parse(Console.ReadLine());
+            if (inputing == 1)
+            {
+                Console.WriteLine("1. Cek Harga");
+                var inputes = int.Parse(Console.ReadLine());
+                if (inputes == 1)
+                {
+                    Foods.JustCheckInShop();
+                    goto nextopsi;
+                }
+            }
+            else if (inputing == 2)
+            {
+                Console.Write("Jumlah uang anda : ");
+                double Money = double.Parse(Console.ReadLine());
+
+                Console.Write("Berapa jumlah pesanan anda :");
+                double JumlhPesanan = double.Parse(Console.ReadLine());
+
+                Shooping.Shoppy(Money, JumlhPesanan);
+            }
            
 
             // Data Khusus untuk tiap kelas.
@@ -71,8 +100,8 @@ namespace Shooping_System
                     //case 4:
                     //    KitchenTools.MenuKitchenTools();
                     //    break;
-                    //case 5:
-                    //    goto 
+                    case 5:
+                    goto Belanjaa;
 
                     default:
                         break;

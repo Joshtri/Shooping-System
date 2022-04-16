@@ -149,6 +149,16 @@ namespace Shooping_System
                 Console.ResetColor();
             }
         }
+        public static void JustCheckInShop()
+        {
+            for (int i = 0; i < ListFood.Count; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                var fd = ListFood[i];
+                Console.WriteLine($"Food : {fd.Name} | Price {fd.Price}");
+                Console.ResetColor();
+            }
+        }
 
         public static void DisplayDiscount()
         {
