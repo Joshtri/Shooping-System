@@ -78,7 +78,7 @@ namespace Shooping_System
                     Console.WriteLine($"Food : {ListDrinks[i].Name} price : {ListDrinks[i].Price}");
                     i++;
                 } while (inputcode == ListDrinks[i].UniqueCode);
-
+                
                 i++;
                 if (inputcode.Length != 4)
                 {
