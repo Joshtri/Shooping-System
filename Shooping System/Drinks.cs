@@ -36,7 +36,6 @@ namespace Shooping_System
 
         public static void DisplayData()
         {
-
             for (int i = 0; i < ListDrinks.Count; i++)
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -67,88 +66,95 @@ namespace Shooping_System
             }
 
         }
-        public static void CheckPrice(string codes)
+        public static void CheckPrice(string inputcode)
         {
-            var food = ListDrinks.Find(x => x.UniqueCode == codes);
-
-            if (food != null)
+           
+            int i = 0;
+            List<Drinks> ListDrinks = new List<Drinks>();
+            while (i < ListDrinks.Count)
             {
-                for (int i = 0; i < ListDrinks.Count; i++)
+                do
                 {
-                    var drk = ListDrinks[i];
-                    Console.WriteLine($"Drink : {drk.Name} Price : {drk.Price}");
+                    Console.WriteLine($"Food : {ListDrinks[i].Name} price : {ListDrinks[i].Price}");
+                    i++;
+                } while (inputcode == ListDrinks[i].UniqueCode);
+
+                i++;
+                if (inputcode.Length != 4)
+                {
+                repeating:
+                    Console.Write("Inputan kode anda kurang 4 digit, masukkan ulang.(Y/N) : ");
+                    string answer = Console.In.ReadLine();
+                    char chrcter = char.Parse(answer);
+                    if (chrcter == 'Y')
+                    {
+                        //goto tryagain;
+                    }
+                    else if (chrcter == 'N')
+                    {
+                        //goto MenuDrink;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Hanya menerima tipe data karakter \"Y\" dan \"N\" ");
+                        goto repeating;
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Masukkan Kode yang benar");
+
             }
         }
-        public static void MenuDrinks()
-        {
-        MenuDrink:
-            Console.WriteLine("Daftar Perintah :\n");
-            Console.WriteLine("1. Melihat Rincian Minuman");
-            Console.WriteLine("2. Melihat Nama Minuman");
-            Console.WriteLine("3. Melihat Harga Minuman");
-            Console.WriteLine("4. Melihat Diskon");
-            Console.WriteLine("9. Kembali ke Menu Utama\n");
-
-        
-            Console.Write("Input Menu pada List Minuman: ");
-            var SelectDrinkMenu = int.Parse(Console.ReadLine());
-            if (SelectDrinkMenu == 1 || SelectDrinkMenu == 2 || SelectDrinkMenu == 3 || SelectDrinkMenu == 4 || SelectDrinkMenu == 9)
-            {
-                switch (SelectDrinkMenu)
-                {
-                    case 1:
-                        DisplayData();
-                        goto MenuDrink;
-                    case 2:
-                        DisplayName();
-                        goto MenuDrink;
-                    case 3:
-                        once:
-
-                        Console.Write("Masukkan kode untuk mengecek harga :");
-                        string inputcode = Console.ReadLine();
-                        if (inputcode.Length != 4)
-                        {
-
-                            Console.Write("Inputan kode anda kurang 4 digit, masukkan ulang.(Y/N) : ");
-                            string answer = Console.In.ReadLine();
-                            char chrcter = char.Parse(answer);
-                            if (chrcter == 'Y')
-                            {
-                                goto once;
-                            }
-                            else if (chrcter == 'N')
-                            {
-                                goto MenuDrink;
-                            }
-                        }
-                        else
-                        {
-                            CheckPrice(inputcode);
-                        }
-                        goto MenuDrink;
+        //public static void MenuDrinks()
+        //{
+        //MenuDrink:
+        //    Console.WriteLine("Daftar Perintah :\n");
+        //    Console.WriteLine("1. Melihat Rincian Minuman");
+        //    Console.WriteLine("2. Melihat Nama Minuman");
+        //    Console.WriteLine("3. Melihat Harga Minuman");
+        //    Console.WriteLine("4. Melihat Diskon");
+        //    Console.WriteLine("9. Kembali ke Menu Utama\n");
 
 
-                    case 4:
-                        //var drunkies = new Drinks();
-                        DisplayDiscount();
+        //    Console.Write("Input Menu pada List Minuman: ");
+        //    var SelectDrinkMenu = int.Parse(Console.ReadLine());
 
-                        goto MenuDrink;
 
-                    case 9:
-                        Program.Main();
-                        break;
-                    default:
-                        break;
-                }
-            }
+        //    switch (SelectDrinkMenu)
+        //    {
+
+        //        case 1:
+        //            Drinks.DisplayData();
+        //            goto MenuDrink;
+        //        case 2:
+        //            Drinks.DisplayName();
+        //            goto MenuDrink;
+        //        case 3:
+        //            Console.Write("Masukkan kode untuk mengecek harga : ");
+        //            string inputcode = Console.In.ReadLine();
+
+        //            Drinks.CheckPrice(inputcode);
+        //            goto MenuDrink;
+
+
+        //        case 4:
+        //            //var drunkies = new Drinks();
+        //            Drinks.DisplayDiscount();
+
+        //            goto MenuDrink;
+
+        //        case 9:
+        //            Program.Main();
+        //            break;
+        //        default:
+        //            break;
+
+        //    }
+
+
 
         }
+
+
+    }
 
 
         //    public int Discountt { get; set; }
@@ -214,5 +220,4 @@ namespace Shooping_System
         //    }
 
 
-    }
-}
+ 

@@ -33,7 +33,7 @@ namespace Shooping_System
             Drinks dk7 = new Drinks("Aqua Galon", "PT. Aqua Golden Missipi", "1333", "Drinks", 40000, 0);
 
 
-            ShowerTools shwr1 = new ShowerTools("Sikat Gigi", "PT. Gigi Sehat","9000", "Kebutuhan Diri",6500,10);
+            ShowerTools shwr1 = new ShowerTools("Sikat Gigi", "PT. Gigi Sehat", "9000", "Kebutuhan Diri", 6500, 10);
             ShowerTools shwr2 = new ShowerTools("Sabun", "PT. Lifeboy", "3000", "Kebutuhan Diri", 3500, 5);
 
 
@@ -55,20 +55,19 @@ namespace Shooping_System
             Console.Write("\tMasukkan menu yang diinginkan : ");
             int Select = int.Parse(Console.ReadLine());
 
-            if (Select == 1 || Select == 2 || Select == 3 || Select == 4)
-            {
+          
+            
                 switch (Select)
                 {
                     case 1:
+                        goto MenuFoods;
                         
-                        Foods.FoodMenu();
-                        break;
                     case 2:
-                        Drinks.MenuDrinks();
-                        break;
+                         goto MenuDrink;
+                       
                     case 3:
-                        ShowerTools.MenuShowerTools();
-                        break;
+                        goto MenuShowerTools;
+                        
                     //case 4:
                     //    KitchenTools.MenuKitchenTools();
                     //    break;
@@ -78,19 +77,139 @@ namespace Shooping_System
                     default:
                         break;
                 }
+        MenuFoods:
+            Console.WriteLine("Daftar Perintah :\n");
+            Console.WriteLine("1. Melihat Rincian Makanan");
+            Console.WriteLine("2. Melihat Nama Makanan");
+            Console.WriteLine("3. Melihat Harga Makanan");
+            Console.WriteLine("4. Melihat Diskon");
+            Console.WriteLine("9. Kembali ke Menu Utama\n");
 
+
+            Console.Write("Input Menu pada List Makanan: ");
+            var SelectFoodMenu = int.Parse(Console.ReadLine());
+            if (SelectFoodMenu == 1 || SelectFoodMenu == 2 || SelectFoodMenu == 3 || SelectFoodMenu == 4) 
+            { 
+            switch (SelectFoodMenu)
+            {
+                case 1:
+                    Foods.DisplayData();
+                    goto MainMenuSystem;
+                case 2:
+
+                    Foods.DisplayName();
+                    goto MainMenuSystem;
+                case 3:
+               
+                    Console.Write("Masukkan kode untuk mengecek harga : ");
+                    string inputcode = Console.In.ReadLine();
+                    Foods.CheckPrice(inputcode);
+                    goto MainMenuSystem;
+
+                case 4:
+
+                    Foods.DisplayDiscount();
+                    goto MainMenuSystem;
+
+                case 9:
+                    Main();
+                    break;
+                default:
+                    break;
             }
-
+            }
             else
             {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Input nomor yang benar");
+                Console.WriteLine("Masukkan Inputan yang benar ");
                 goto MainMenuSystem;
             }
 
+        MenuDrink:
+            Console.WriteLine("Daftar Perintah :\n");
+            Console.WriteLine("1. Melihat Rincian Minuman");
+            Console.WriteLine("2. Melihat Nama Minuman");
+            Console.WriteLine("3. Melihat Harga Minuman");
+            Console.WriteLine("4. Melihat Diskon");
+            Console.WriteLine("9. Kembali ke Menu Utama\n");
 
-        
+
+            Console.Write("Input Menu pada List Minuman: ");
+            var SelectDrinkMenu = int.Parse(Console.ReadLine());
+
+
+            switch (SelectDrinkMenu)
+            {
+
+                case 1:
+                    Drinks.DisplayData();
+                    goto MainMenuSystem;
+                case 2:
+                    Drinks.DisplayName();
+                    goto MainMenuSystem;
+                case 3:
+                    Console.Write("Masukkan kode untuk mengecek harga : ");
+                    string inputcode = Console.In.ReadLine();
+
+                    Drinks.CheckPrice(inputcode);
+                    goto MainMenuSystem;
+                case 4:
+                    //var drunkies = new Drinks();
+                    Drinks.DisplayDiscount();
+                    goto MainMenuSystem;
+
+                case 9:
+                    Main();
+                    break;
+                default:
+                    break;
+
+            }
+
+        MenuShowerTools:
+            Console.WriteLine("Daftar Perintah :\n");
+            Console.WriteLine("1. Melihat Rincian Alat kebersihan");
+            Console.WriteLine("2. Melihat Nama Alat kebersihan");
+            Console.WriteLine("3. Melihat Harga Alat kebersihan");
+            Console.WriteLine("4. Melihat Diskon");
+            Console.WriteLine("9. Kembali ke Menu Utama\n");
+
+
+            Console.Write("Input Menu pada List Alat Kebersihan: ");
+            var SelectShowerToolsMenu = int.Parse(Console.ReadLine());
+            if (SelectShowerToolsMenu == 1 || SelectShowerToolsMenu == 2 || SelectShowerToolsMenu == 3 || SelectShowerToolsMenu == 4 || SelectShowerToolsMenu == 9)
+            {
+                switch (SelectShowerToolsMenu)
+                {
+                    case 1:
+                        ShowerTools.DisplayData();
+                        goto MainMenuSystem;
+                    case 2:
+
+                        ShowerTools.DisplayName();
+                        goto MainMenuSystem;
+                    case 3:
+                   
+                        Console.Write("Masukkan kode untuk mengecek harga : ");
+                        string inputcode = Console.In.ReadLine();
+                        ShowerTools.CheckPrice(inputcode);
+
+                        goto MainMenuSystem;
+
+                    case 4:
+
+                        ShowerTools.DisplayDiscount();
+                        goto MainMenuSystem;
+
+                    case 9:
+                        Program.Main();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+
         }
     }
    }

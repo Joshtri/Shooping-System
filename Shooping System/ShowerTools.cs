@@ -23,13 +23,15 @@ namespace Shooping_System
 
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 var fd1 = ListShowerTools[i];
-                Console.WriteLine($"Shower Tools : {fd1.Name}|Unique Code : {fd1.UniqueCode}| Price: {fd1.Price}| Type : {fd1.TypeProduct}| Company: {fd1.Company}| Expired Date: {fd1.Dt}");
+                Console.WriteLine($"Shower Tools : {fd1.Name}|Unique Code : {fd1.UniqueCode}| Price: {fd1.Price}| Type : {fd1.TypeProduct}| Company: {fd1.Company}| Expired Date: {fd1.dt}");
+
                 Console.ResetColor();
+
 
             }
             Console.WriteLine("======================================================================================================================");
         }
-       new public static void DisplayName()
+        new public static void DisplayName()
         {
             for (int i = 0; i < ListShowerTools.Count; i++)
             {
@@ -52,125 +54,49 @@ namespace Shooping_System
             }
 
         }
-       new public static void CheckPrice(string codes)
+        new public static void CheckPrice(string inputcode)
         {
-            var food = ListShowerTools.Find(x => x.UniqueCode == codes);
-
-            if (food != null)
+            int i = 0;
+            while (i < ListShowerTools.Count)
             {
-                for (int i = 0; i < ListShowerTools.Count; i++)
+                do
                 {
-                    var fd = ListShowerTools[i];
-                    Console.WriteLine($"Shower Tools : {fd.Name} Price : {fd.Price}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Masukkan Kode yang benar");
-            }
-        }
+                    Console.WriteLine($"Food : {ListShowerTools[i].Name} price : {ListShowerTools[i].Price}");
+                    i++;
+                } while (inputcode == ListShowerTools[i].UniqueCode);
 
-
-
-        public static void MenuShowerTools()
-        {
-        MenuShowerTools:
-            Console.WriteLine("Daftar Perintah :\n");
-            Console.WriteLine("1. Melihat Rincian Makanan");
-            Console.WriteLine("2. Melihat Nama Makanan");
-            Console.WriteLine("3. Melihat Harga Makanan");
-            Console.WriteLine("4. Melihat Diskon");
-            Console.WriteLine("9. Kembali ke Menu Utama\n");
-
-
-            Console.Write("Input Menu pada List Makanan: ");
-            var SelectFoodMenu = int.Parse(Console.ReadLine());
-            if (SelectFoodMenu == 1 || SelectFoodMenu == 2 || SelectFoodMenu == 3 || SelectFoodMenu == 4 || SelectFoodMenu == 9)
-            {
-                switch (SelectFoodMenu)
+                i++;
+                if (inputcode.Length != 4)
                 {
-                    case 1:
+                repeating:
+                    Console.Write("Inputan kode anda kurang 4 digit, masukkan ulang.(Y/N) : ");
+                    string answer = Console.In.ReadLine();
+                    char chrcter = char.Parse(answer);
+                    if (chrcter == 'Y')
+                    {
 
-                        DisplayData();
-                        goto MenuShowerTools;
-                    case 2:
-
-                        DisplayName();
-                        goto MenuShowerTools;
-                    case 3:
-                    tryagain:
-                        Console.Write("Masukkan kode untuk mengecek harga : ");
-                        string inputcode = Console.In.ReadLine();
-                        int i = 0; 
-                        while (i < ListShowerTools.Count)
-                        {
-                            do
-                            {
-                                Console.WriteLine($"Food : {ListShowerTools[i].Name} price : {ListShowerTools[i].Price}");
-                                i++;
-                            } while (inputcode == ListShowerTools[i].UniqueCode);
-                            
-                            i++;
-                            if (inputcode.Length != 4)
-                            {
-
-                                Console.Write("Inputan kode anda kurang 4 digit, masukkan ulang.(Y/N) : ");
-                                string answer = Console.In.ReadLine();
-                                char chrcter = char.Parse(answer);
-                                if (chrcter == 'Y')
-                                {
-                                    goto tryagain;
-                                }
-                                else if (chrcter == 'N')
-                                {
-                                    goto MenuShowerTools;
-                                }
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                        goto MenuShowerTools;
-                    //if ()
-                    //{
-
-                    //}
-
-
-                    case 4:
-
-                        DisplayDiscount();
-                        goto MenuShowerTools;
-
-                    case 9:
-                        Program.Main();
-                        break;
-                    default:
-                        break;
+                    }
+                    else if (chrcter == 'N')
+                    {
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Hanya menerima tipe data karakter \"Y\" dan \"N\" ");
+                        goto repeating;
+                    }
                 }
             }
 
 
 
+        //public static void MenuShowerTools()
+        //{
+        
+
+
+
         }
-        //    private static List<ShowerTools> ListShower = new List<ShowerTools>();
-        //    public ShowerTools(string name, string company, string cde, 
-        //        string typeprdct, long price, int dsc) : base(name, company, cde, typeprdct, price, dsc) 
-        //    {
-
-        //        ListShower.Add(this);
-        //    }
-
-        //    public static void MenuShowerTools()
-        //    {
-        //        Console.WriteLine("Daftar Perintah :\n");
-        //        Console.WriteLine("1. Melihat Rincian Makanan");
-        //        Console.WriteLine("2. Melihat Nama Makanan");
-        //        Console.WriteLine("3. Melihat Harga Makanan");
-        //        Console.WriteLine("4. Melihat Diskon");
-        //        Console.WriteLine("9. Kembali ke Menu Utama\n");
-        //    }
 
     }
 }
